@@ -23,7 +23,7 @@ public class ResponsePagination<T> implements Serializable {
     private int returnedRecords;
 
     public static <E> ResponsePagination<E> fromObject(List<E> result, long total, Integer page,
-                                                       Integer returnedRecords){
+                                                       Integer returnedRecords) {
         return new ResponsePagination(result, total, page, returnedRecords);
     }
 }

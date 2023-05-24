@@ -24,8 +24,8 @@ public class PriceServiceTest {
 
     @Test
     public void shouldFindByParameters() {
-        priceService.findByParameters(PriceSearchCommand.builder().build(), PageRequest.of(1, 2));
-        verify(priceGateway).findByParameters(any(), any());
+        priceService.findByParameters(PriceSearchCommand.builder().build());
+        verify(priceGateway).findByParameters(any());
     }
 
 }

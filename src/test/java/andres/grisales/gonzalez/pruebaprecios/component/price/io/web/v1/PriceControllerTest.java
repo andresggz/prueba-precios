@@ -13,9 +13,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.math.BigDecimal;
+
 @SpringBootTest
 @AutoConfigureMockMvc
-//@Sql(scripts = { "classpath:/data.sql" })
 public class PriceControllerTest {
 
     @Autowired
@@ -29,7 +30,7 @@ public class PriceControllerTest {
                         .param("brandId", "1")
                         .param("applicationDate", "2020-06-14T10:00:00"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.returnedRecords").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(BigDecimal.valueOf(35.50)))
                 .andReturn();
     }
 
@@ -41,7 +42,7 @@ public class PriceControllerTest {
                         .param("brandId", "1")
                         .param("applicationDate", "2020-06-14T16:00:00"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.returnedRecords").value(2))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(BigDecimal.valueOf(25.45)))
                 .andReturn();
     }
 
@@ -53,7 +54,7 @@ public class PriceControllerTest {
                         .param("brandId", "1")
                         .param("applicationDate", "2020-06-14T21:00:00"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.returnedRecords").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(BigDecimal.valueOf(35.50)))
                 .andReturn();
     }
 
@@ -65,7 +66,7 @@ public class PriceControllerTest {
                         .param("brandId", "1")
                         .param("applicationDate", "2020-06-15T10:00:00"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.returnedRecords").value(2))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(BigDecimal.valueOf(30.50)))
                 .andReturn();
     }
 
@@ -77,8 +78,8 @@ public class PriceControllerTest {
                         .param("brandId", "1")
                         .param("applicationDate", "2020-06-16T21:00:00"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.returnedRecords")
-                        .value(2))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price")
+                        .value(BigDecimal.valueOf(38.95)))
                 .andReturn();
     }
 }

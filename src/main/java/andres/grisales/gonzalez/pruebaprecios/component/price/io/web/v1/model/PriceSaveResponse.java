@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Builder(toBuilder = true)
-public class PriceListResponse {
+public class PriceSaveResponse {
 
     private Long priceId;
 
@@ -27,8 +27,8 @@ public class PriceListResponse {
 
     private Long productId;
 
-    public static PriceListResponse fromModel(Price price) {
-        return PriceListResponse.builder()
+    public static PriceSaveResponse fromModel(Price price) {
+        return PriceSaveResponse.builder()
                 .priceId(price.getPriceList())
                 .brandId(price.getBrandId())
                 .price(price.getPrice())
