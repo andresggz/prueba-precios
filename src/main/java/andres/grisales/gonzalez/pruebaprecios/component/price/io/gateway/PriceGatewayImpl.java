@@ -26,13 +26,8 @@ public class PriceGatewayImpl implements PriceGateway {
     public Price findByParameters(PriceSearchCommand commandSearch) {
         var priceSpecification = buildCriteria(commandSearch);
 
-        var priceFound = priceRepository.findAll(priceSpecification, PageRequest.of(0, 1)).get().toList();
-
-        if (priceFound.size() == 1) {
-            return priceFound.get(0);
-        }
-
-        throw new NotFoundException("Price not found for given search params.");
+        return priceRepository.findAll(priceSpecification, PageRequest.of(0, 1))
+                .stream().findFirst().orElseThrow(() -> new NotFoundException("Price not found for given search params."));
     }
 
     private Specification<Price> buildCriteria(PriceSearchCommand queryCriteria) {
